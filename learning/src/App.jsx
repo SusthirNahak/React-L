@@ -3,6 +3,12 @@ import { Navbar } from './components/Navbar'
 import TextArea from './components/TextArea'
 import About from './components/About'
 
+//import react router dom
+import{
+  BrowserRoute as Router,
+  Switch,
+  Route,
+  Link } from "react-router-dom"
 
 function App() {
   const[mode,setMode] =useState('light');
@@ -20,12 +26,21 @@ function App() {
 
   return (
     <>
+<Router>
+
       <Navbar  mode={mode} togglemode={togglemode} />
       <div className="container my-4 ">
-      <About/>
-      <TextArea heading="Enter text to analyze" togglemode={togglemode}/>
+          <Switch>
+            <Route path='/about'>
+            <About/>
+            </Route>
+            <Route path='/'>
+            <TextArea heading="Enter text to analyze" togglemode={togglemode}/>
+            </Route>
+          </Switch>
       </div>
       
+      </Router>
     </>
   )
 }
